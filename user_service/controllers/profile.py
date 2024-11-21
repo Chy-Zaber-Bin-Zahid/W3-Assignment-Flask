@@ -1,6 +1,6 @@
 from flask import jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from data.user import users
+from models.user import users
 
 def profile_route(app):
     @app.route('/profile', methods=['GET'])

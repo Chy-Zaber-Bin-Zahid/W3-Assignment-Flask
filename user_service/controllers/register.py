@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from werkzeug.security import generate_password_hash
-from data.user import users
+from models.user import users
 
 
 def register_route(app):

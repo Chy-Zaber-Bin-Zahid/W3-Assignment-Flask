@@ -1,5 +1,5 @@
 from flask import Flask
-from routes.route import routes
+from routers.route import routes
 from flask_jwt_extended import JWTManager
 
 app = Flask(__name__)
@@ -9,4 +9,4 @@ jwt = JWTManager(app)
 routes(app)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug = True, port = 5000)
