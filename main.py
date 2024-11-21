@@ -1,8 +1,10 @@
 from flask import Flask
 from routes.route import routes
+from flask_jwt_extended import JWTManager
 
 app = Flask(__name__)
-
+app.config['JWT_SECRET_KEY'] = 'your_jwt_secret_key'
+jwt = JWTManager(app)
 
 routes(app)
 
