@@ -1,22 +1,24 @@
-from flask import Flask, request, jsonify
+from flask import request, jsonify
 from werkzeug.security import generate_password_hash
 from models.user import users
+
 
 def register_route(app):
     @app.route('/register', methods=['POST'])
     def register():
         data = request.json
-        
         # Check if all required fields are provided
         required_fields = ['email', 'password', 'name']
         for field in required_fields:
             if field not in data or not data[field]:
-                return jsonify({"msg": f"Missing required field: {field}"}), 400
+                return jsonify({
+                    "msg": f"Missing required field: {field}"
+                    }), 400
 
         email = data['email']
         password = data['password']
         name = data['name']
-        role = data.get('role', 'User')  # Role is optional with default value 'User'
+        role = data.get('role', 'User')
 
         # Validate types
         if not isinstance(email, str):
@@ -33,7 +35,9 @@ def register_route(app):
         # Check if the user already exists
         for user in users:
             if email == user['email']:
-                return jsonify({"msg": "User with this email already exists."}), 409
+                return jsonify({
+                    "msg": "User with this email already exists."
+                    }), 409
 
         # Hash the password
         hashed_password = generate_password_hash(password)
