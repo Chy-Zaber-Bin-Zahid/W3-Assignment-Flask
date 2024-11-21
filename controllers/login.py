@@ -11,6 +11,6 @@ def login_route(app):
         password = request.json.get('password')
         user = next((user for user in users if user['email'] == email), None)
         if user and check_password_hash(user['password'], password):
-            access_token = create_access_token(identity={'email': email, 'role': user['role']})
+            access_token = create_access_token(identity=str(email))
             return jsonify(access_token=access_token), 200
         return jsonify({"msg": "The user with the provided email does not exist."}), 404

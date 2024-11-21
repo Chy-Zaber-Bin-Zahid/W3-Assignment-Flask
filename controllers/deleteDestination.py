@@ -4,7 +4,7 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 
 
 def delete_route(app):
-    @app.route('/destinations/<id>', methods=['DELETE'])
+    @app.route('/destinations/<int:id>', methods=['DELETE'])
     def deleteDestination(id):
         # Check if the user is an Admin
         if request.headers.get('role') != 'Admin':
