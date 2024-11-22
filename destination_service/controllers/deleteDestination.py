@@ -1,9 +1,75 @@
 from flask import request, jsonify
 from models.dest import destinations
+from flasgger import swag_from
 
 
 def delete_route(app):
     @app.route('/destinations/<int:id>', methods=['DELETE'])
+    @swag_from({
+        'tags': ['Destination Service'],
+        'summary': 'Delete a Destination',
+        'description': (
+            'Delete a destination by its ID. '
+            'Only Admin users are allowed to perform this action.'
+        ),
+        'parameters': [
+            {
+                'name': 'id',
+                'in': 'path',
+                'type': 'integer',
+                'required': True,
+                'description': 'The ID of the destination to delete',
+                'example': 1
+            },
+            {
+                'name': 'role',
+                'in': 'header',
+                'type': 'string',
+                'required': True,
+                'description': 'The role of the user. Must be "Admin".',
+                'example': 'Admin'
+            }
+        ],
+        'responses': {
+            200: {
+                'description': 'Destination successfully deleted.',
+                'schema': {
+                    'type': 'object',
+                    'properties': {
+                        'msg': {
+                            'type': 'string',
+                            'example': 'Destination 1 has been deleted.'
+                        }
+                    }
+                }
+            },
+            403: {
+                'description': 'Unauthorized. Only '
+                'Admins can perform this action.',
+                'schema': {
+                    'type': 'object',
+                    'properties': {
+                        'msg': {
+                            'type': 'string',
+                            'example': 'Unauthorized. Admins only.'
+                        }
+                    }
+                }
+            },
+            404: {
+                'description': 'Destination not found.',
+                'schema': {
+                    'type': 'object',
+                    'properties': {
+                        'msg': {
+                            'type': 'string',
+                            'example': 'Destination not found.'
+                        }
+                    }
+                }
+            }
+        }
+    })
     def deleteDestination(id):
         # Check if the user is an Admin
         if request.headers.get('role') != 'Admin':
