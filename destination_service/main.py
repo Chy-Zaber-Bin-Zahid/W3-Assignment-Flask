@@ -5,11 +5,14 @@ from flasgger import Swagger
 from dotenv import load_dotenv
 
 
-load_dotenv()
-app = Flask(__name__)
-swagger = Swagger(app)
-routes(app)
+def create_app():
+    load_dotenv()
+    app = Flask(__name__)
+    Swagger(app)
+    routes(app)
+    return app
 
 
 if __name__ == '__main__':
+    app = create_app()
     app.run(debug=True, port=os.getenv('PORT_DESTINATION'))
