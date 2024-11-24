@@ -38,4 +38,3 @@ def test_profile_missing_token(client):
 
     assert response.status_code == 401
     assert response.json == {'msg': 'Missing Authorization Header'}
-
