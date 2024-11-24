@@ -6,13 +6,16 @@ from flasgger import Swagger
 from dotenv import load_dotenv
 
 
-load_dotenv()
-app = Flask(__name__)
-app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
-swagger = Swagger(app)
-jwt = JWTManager(app)
-routes(app)
+def create_app():
+    load_dotenv()
+    app = Flask(__name__)
+    app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
+    Swagger(app)
+    JWTManager(app)
+    routes(app)
+    return app
 
 
 if __name__ == '__main__':
+    app = create_app()
     app.run(debug=True, port=os.getenv('PORT_AUTHENTICATION'))

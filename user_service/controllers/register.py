@@ -72,18 +72,37 @@ def register_route(app):
                         }
                     }
                 }
+            },
+            422: {
+                'description': 'Unprocessable Entity: Invalid field provided.',
+                'schema': {
+                    'type': 'object',
+                    'properties': {
+                        'msg': {
+                            'type': 'string',
+                            'example': 'Unexpected field: role'
+                        }
+                    }
+                }
             }
         }
     })
     def register():
         data = request.json
+
+        allowed_fields = {'email', 'password', 'name', 'role'}
+        for field in data.keys():
+            if field not in allowed_fields:
+                return jsonify({
+                    "msg": f"Unexpected field: {field}"
+                }), 422
         # Check if all required fields are provided
         required_fields = ['email', 'password', 'name']
         for field in required_fields:
             if field not in data or not data[field]:
                 return jsonify({
                     "msg": f"Missing required field: {field}"
-                    }), 400
+                    }), 400 
 
         email = data['email']
         password = data['password']
