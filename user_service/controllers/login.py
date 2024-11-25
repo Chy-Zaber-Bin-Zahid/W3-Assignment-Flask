@@ -92,6 +92,12 @@ def login_route(app):
     def login():
         data = request.json
 
+        # Check if any extra fields are present
+        allowed_fields = ['email', 'password']
+        for field in data:
+            if field not in allowed_fields:
+                return jsonify({"msg": f"Invalid field: {field}"}), 400
+
         # Check if all required fields are provided
         required_fields = ['email', 'password']
         for field in required_fields:
