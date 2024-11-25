@@ -49,15 +49,15 @@ To help you get started quickly, I have provided a Postman collection that inclu
 The collection includes the following endpoints:
 
 **Destination Service**
-- GET /destinations: Retrieve a list of all travel destinations.
-- DELETE /destinations/<id>: Delete a specific travel destination (Admin-only).
+- GET /destinations Retrieve a list of all travel destinations.
+- DELETE /destinations/:id Delete a specific travel destination (Admin-only).
 
 
 **User Service**
-- POST /register: Register a new user.
-- POST /login: Authenticate a user and provide an access token.
-- GET /profile: View profile information (user-specific).
+- POST /register Register a new user.
+- POST /login Authenticate a user and provide an access token.
+- GET /profile View profile information (user-specific).
 
 
 **Authentication Service**
-- GET /role-check: Verify user role is admin or not.
+- GET /role-check Verify user role is admin or not.
