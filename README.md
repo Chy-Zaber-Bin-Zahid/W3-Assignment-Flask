@@ -22,6 +22,14 @@ PORT_USER=5002
 - To run server go to each service folder and run ```python main.py```
 - To test go to each service folder and run ```pytest --cov```
 
+# Swagger API
+
+The server must be running in terminal in order to see swagger api
+
+- `http://127.0.0.1:5000/apidocs/` Authentication Service
+- `http://127.0.0.1:5001/apidocs/` Destination Service
+- `http://127.0.0.1:5002/apidocs/` User Service
+
 # Postman Collection
 
 To help you get started quickly, I have provided a Postman collection that includes all our API endpoints with example requests.
