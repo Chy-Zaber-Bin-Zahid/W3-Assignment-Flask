@@ -13,7 +13,7 @@ def test_all_destinations_success(client):
 
     # Mock the destinations import
     with patch('controllers.allDestination.destinations', mock_destinations):
-        response = client.get('/all-destination')
+        response = client.get('/destinations')
         print(response)
 
         assert response.status_code == 200
@@ -24,7 +24,7 @@ def test_all_destinations_success(client):
 def test_all_destinations_empty(client):
     # Mock an empty destinations list
     with patch('controllers.allDestination.destinations', []):
-        response = client.get('/all-destination')
+        response = client.get('/destinations')
 
         assert response.status_code == 404
         assert response.json == {"msg": "No destinations found."}
