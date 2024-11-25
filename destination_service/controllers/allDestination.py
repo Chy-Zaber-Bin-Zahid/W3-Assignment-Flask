@@ -4,7 +4,7 @@ from flasgger import swag_from
 
 
 def destination_route(app):
-    @app.route('/all-destination', methods=['GET'])
+    @app.route('/destinations', methods=['GET'])
     @swag_from({
         'tags': ['Destination Service'],  # Categorize the endpoint
         'summary': 'Get All Destinations',

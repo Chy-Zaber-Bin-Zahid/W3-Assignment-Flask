@@ -28,7 +28,7 @@ To help you get started quickly, I have provided a Postman collection that inclu
 
 ### Importing the Collection
 
-1. Download our Postman Collection: [W3 Flask Assignment.json](/postman/W3_Flask_postman_collection.json)
+1. Download our Postman Collection: [W3 Flask Assignment.json](/Postman/W3_Flask_postman_collection.json)
 
 2. Open Postman and click on "Import" in the top left corner
 
